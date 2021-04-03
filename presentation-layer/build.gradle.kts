@@ -77,4 +77,8 @@ dependencies {
     kapt(Libraries.daggerCompiler)
     implementation(Libraries.glide)
     kapt(Libraries.glideCompiler)
+    // testing dependencies - Unit Test
+    testImplementation(Libraries.junit)
+    testImplementation(Libraries.mockitoKotlin)
+    testImplementation(Libraries.kotlinCoroutinesTest)
 }
