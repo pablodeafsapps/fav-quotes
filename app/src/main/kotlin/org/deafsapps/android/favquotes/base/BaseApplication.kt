@@ -8,7 +8,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
  * General tool configurations such as 'LeakCanary' for memory leaks, and 'Dagger' for dependency
  * inversion are initialized here.
  *
- * @author Pablo L. Sordo Martínez
  * @since 1.0
  */
 @ExperimentalCoroutinesApi
