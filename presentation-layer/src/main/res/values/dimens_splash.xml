@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="group_margin">@dimen/thirty_two</dimen>
+    <dimen name="text_quote_start_margin">@dimen/eight</dimen>
+    <dimen name="text_quote_top_margin">@dimen/thirty_two</dimen>
+    <dimen name="text_quote_end_margin">@dimen/eight</dimen>
+    <dimen name="text_hint_top_margin">@dimen/eight</dimen>
+    <dimen name="text_hint_end_margin">@dimen/sixteen</dimen>
+    <dimen name="text_hint_bottom_margin">@dimen/sixteen</dimen>
+</resources>

@@ -5,8 +5,10 @@ import org.deafsapps.android.favquotes.domainlayer.domain.ErrorMessage
 /**
  *
  */
-// TODO: delete when the file gets populated
-data class TestVo(val data: String)
+data class QuoteVo(
+    val author: String,
+    val body: String
+)
 
 /**
  * A class which models any failure coming from the 'domain-layer' module
@@ -22,6 +24,7 @@ sealed class FailureVo(var msg: String?) {
      */
     fun getErrorMessage(): String = msg ?: DEFAULT_STRING_RESOURCE
 
+    object Idle : FailureVo(msg = DEFAULT_STRING_RESOURCE)
     object NoConnection : FailureVo(msg = ErrorMessage.ERROR_NO_CONNECTION)
     object NoData : FailureVo(msg = ErrorMessage.ERROR_NO_DATA)
     object Unknown : FailureVo(msg = ErrorMessage.ERROR_UNKNOWN)

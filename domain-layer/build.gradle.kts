@@ -19,12 +19,12 @@ tasks {
 }
 
 dependencies {
-    implementation(Libraries.kotlinStdLib)
     implementation(Libraries.kotlinCoroutinesCore)
     implementation(Libraries.kotlinCoroutinesAndroid)
     // 3rd party libraries
     detekt(Libraries.detektFormatting)
     detekt(Libraries.detektCli)
+    api(Libraries.timber)
     api(Libraries.arrowCore)
     api(Libraries.arrowSyntax)
     kapt(Libraries.arrowMeta)

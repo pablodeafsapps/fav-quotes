@@ -51,7 +51,6 @@ tasks {
 }
 
 dependencies {
-    implementation(Libraries.kotlinStdLib)
     implementation(Libraries.kotlinCoroutinesCore)
     implementation(Libraries.retrofitCoroutinesAdapter)
     // other modules

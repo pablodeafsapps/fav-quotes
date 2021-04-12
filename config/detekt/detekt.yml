@@ -58,7 +58,7 @@ complexity:
     includeStaticDeclarations: false
   ComplexMethod:
     active: true
-    threshold: 10
+    threshold: 15
     ignoreSingleWhenExpression: false
     ignoreSimpleWhenEntries: true
   LabeledExpression:
@@ -117,7 +117,7 @@ empty-blocks:
   EmptyForBlock:
     active: true
   EmptyFunctionBlock:
-    active: true
+    active: false
     ignoreOverridden: false
   EmptyIfBlock:
     active: true
@@ -201,7 +201,7 @@ formatting:
     active: true
     autoCorrect: true
   ImportOrdering:
-    active: true
+    active: false
     autoCorrect: true
   Indentation:
     active: true
@@ -210,7 +210,7 @@ formatting:
     continuationIndentSize: 4
   MaximumLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 150
   ModifierOrdering:
     active: true
     autoCorrect: true
@@ -248,7 +248,7 @@ formatting:
     active: true
     autoCorrect: true
   NoWildcardImports:
-    active: true
+    active: false
   PackageName:
     active: true
     autoCorrect: true
@@ -359,7 +359,7 @@ naming:
   VariableNaming:
     active: true
     excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"]
-    variablePattern: "[a-z][A-Za-z0-9]*"
+    variablePattern: "(_)?[a-z][A-Za-z0-9]*"
     privateVariablePattern: "(_)?[a-z][A-Za-z0-9]*"
     excludeClassPattern: "^Base.*$"
     ignoreOverridden: true
@@ -475,7 +475,7 @@ style:
     active: false
   MaxLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 150
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: false
@@ -564,5 +564,5 @@ style:
     active: false
   WildcardImport:
     active: true
-    excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"]
+    excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt,*Contract.kt"]
     excludeImports: ["java.util.*,kotlinx.android.synthetic.*"]

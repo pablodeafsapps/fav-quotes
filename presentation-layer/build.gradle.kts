@@ -61,7 +61,6 @@ tasks {
 }
 
 dependencies {
-    implementation(Libraries.kotlinStdLib)
     implementation(Libraries.appCompat)
     implementation(Libraries.lifecycle)
     implementation(Libraries.viewModelKtx)

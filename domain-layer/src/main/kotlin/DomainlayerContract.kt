@@ -1,7 +1,13 @@
+package org.deafsapps.android.favquotes.domainlayer
+
 import arrow.core.Either
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.deafsapps.android.favquotes.domainlayer.domain.FailureBo
 
 /**
@@ -90,7 +96,7 @@ interface DomainlayerContract {
 
         companion object {
             const val AUTHENTICATION_REPOSITORY_TAG = "authenticationRepository"
-            const val DATA_REPOSITORY_TAG = "dataRepository"
+            const val QUOTE_DATA_REPOSITORY_TAG = "quoteDataRepository"
         }
 
         /**
