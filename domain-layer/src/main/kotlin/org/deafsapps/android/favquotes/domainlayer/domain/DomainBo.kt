@@ -3,6 +3,23 @@ package org.deafsapps.android.favquotes.domainlayer.domain
 private const val DEFAULT_STRING_RESOURCE = "none"
 
 /**
+ *
+ */
+data class QuoteBo(
+    val author: String,
+    val authorPermalink: String,
+    val body: String,
+    val dialogue: Boolean,
+    val downvotesCount: Int,
+    val favoritesCount: Int,
+    val id: Int,
+    val isPrivate: Boolean,
+    val tags: List<String>,
+    val upvotesCount: Int,
+    val url: String
+)
+
+/**
  * A class which models any failure coming from the 'domain-layer'
  */
 sealed class FailureBo(val msg: String = DEFAULT_STRING_RESOURCE) {

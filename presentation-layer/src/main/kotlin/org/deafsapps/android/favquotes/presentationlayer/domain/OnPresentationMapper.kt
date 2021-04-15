@@ -1,6 +1,15 @@
 package org.deafsapps.android.favquotes.presentationlayer.domain
 
 import org.deafsapps.android.favquotes.domainlayer.domain.FailureBo
+import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
+
+/**
+ *
+ */
+fun QuoteBo.toVo() = QuoteVo(
+    author = author,
+    body = body
+)
 
 /**
  * Extension function which maps a failure Business Object to a failure Visual Object

@@ -1,2 +1,5 @@
 <resources>
+    <string name="text_splash_quote">\"%1$s\"</string>
+    <string name="text_splash_author">[%1$s]</string>
+    <string name="text_splash_hint">tap to continue</string>
 </resources>

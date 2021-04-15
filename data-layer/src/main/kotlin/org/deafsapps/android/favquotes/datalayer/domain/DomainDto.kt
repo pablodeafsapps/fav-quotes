@@ -5,6 +5,18 @@ import com.squareup.moshi.JsonClass
 import okhttp3.ResponseBody
 import org.deafsapps.android.favquotes.domainlayer.domain.ErrorMessage
 
+private const val C_INVALID_REQUEST = 10
+private const val C_PERMISSIOIN_DENIED = 11
+private const val C_USER_SESSION_NOT_FOUND = 20
+private const val C_INVALID_LOGIN = 21
+private const val C_LOGIN_INACTIVE = 22
+private const val C_LOGIN_MISSING = 23
+private const val C_PRO_USER_REQUIRED = 24
+private const val C_USER_NOT_FOUND = 30
+private const val C_USER_SESSION_ALREADY_PRESENT = 31
+private const val C_QUOTE_NOT_FOUND = 40
+private const val C_PRIVATE_QUOTES_CANNOT_UNFAV = 41
+
 /**
  *
  */
@@ -59,15 +71,15 @@ sealed class FailureDto(val msg: String?) {
  * An enum class which represents all the 'FavQs' error data returned by the API
  */
 enum class FavqsApiErrorCode(val code: Int, val msg: String) {
-    INVALID_REQUEST(10, "Invalid request"),
-    PERMISSIOIN_DENIED(11, "Permission denied"),
-    USER_SESSION_NOT_FOUND(20, "User session not found"),
-    INVALID_LOGIN(21, "Invalid login or password"),
-    LOGIN_INACTIVE(22, "Login is not active. Contact support@favqs.com"),
-    LOGIN_MISSING(23, "User login or password is missing"),
-    PRO_USER_REQUIRED(24, "Pro user required"),
-    USER_NOT_FOUND(30, "User not found"),
-    USER_SESSION_ALREADY_PRESENT(31, "User session already present"),
-    QUOTE_NOT_FOUND(40, "Quote not found"),
-    PRIVATE_QUOTES_CANNOT_UNFAV(41, "Private quotes cannot be unfav'd")
+    INVALID_REQUEST(C_INVALID_REQUEST, "Invalid request"),
+    PERMISSIOIN_DENIED(C_PERMISSIOIN_DENIED, "Permission denied"),
+    USER_SESSION_NOT_FOUND(C_USER_SESSION_NOT_FOUND, "User session not found"),
+    INVALID_LOGIN(C_INVALID_LOGIN, "Invalid login or password"),
+    LOGIN_INACTIVE(C_LOGIN_INACTIVE, "Login is not active. Contact support@favqs.com"),
+    LOGIN_MISSING(C_LOGIN_MISSING, "User login or password is missing"),
+    PRO_USER_REQUIRED(C_PRO_USER_REQUIRED, "Pro user required"),
+    USER_NOT_FOUND(C_USER_NOT_FOUND, "User not found"),
+    USER_SESSION_ALREADY_PRESENT(C_USER_SESSION_ALREADY_PRESENT, "User session already present"),
+    QUOTE_NOT_FOUND(C_QUOTE_NOT_FOUND, "Quote not found"),
+    PRIVATE_QUOTES_CANNOT_UNFAV(C_PRIVATE_QUOTES_CANNOT_UNFAV, "Private quotes cannot be unfav'd")
 }

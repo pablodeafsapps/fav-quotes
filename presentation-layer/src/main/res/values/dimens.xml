@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- shared dimensions -->
+    <!-- margin -->
+    <dimen name="eight">8dp</dimen>
+    <dimen name="sixteen">16dp</dimen>
+    <dimen name="twenty_four">24dp</dimen>
+    <dimen name="thirty_two">32dp</dimen>
+</resources>

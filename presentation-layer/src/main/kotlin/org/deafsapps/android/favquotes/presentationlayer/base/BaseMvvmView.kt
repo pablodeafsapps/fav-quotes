@@ -2,7 +2,6 @@ package org.deafsapps.android.favquotes.presentationlayer.base
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.deafsapps.android.favquotes.domainlayer.base.BaseDomainLayerBridge
-import org.deafsapps.android.githubbrowser.presentationlayer.base.BaseMvvmViewModel
 
 /**
  * This parametrized interface is intended to be implemented by any app presentation-layer view which aims to be
