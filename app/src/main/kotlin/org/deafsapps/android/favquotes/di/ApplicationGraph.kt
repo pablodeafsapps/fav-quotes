@@ -10,6 +10,7 @@ import org.deafsapps.android.favquotes.datalayer.di.RepositoryModule
 import org.deafsapps.android.favquotes.domainlayer.di.BridgeModule
 import org.deafsapps.android.favquotes.domainlayer.di.UsecaseModule
 import org.deafsapps.android.favquotes.presentationlayer.di.ApplicationScope
+import org.deafsapps.android.favquotes.presentationlayer.di.MainComponent
 import org.deafsapps.android.favquotes.presentationlayer.di.PresentationlayerModule
 import org.deafsapps.android.favquotes.presentationlayer.di.SplashComponent
 
@@ -43,7 +44,10 @@ interface ApplicationComponent {
      *
      */
     fun splashComponentFactory(): SplashComponent.Factory
-//    fun mainComponentFactory(): MainComponent.Factory
+    /**
+     *
+     */
+    fun mainComponentFactory(): MainComponent.Factory
 //    fun detailComponentFactory(): DetailComponent.Factory
 
 }

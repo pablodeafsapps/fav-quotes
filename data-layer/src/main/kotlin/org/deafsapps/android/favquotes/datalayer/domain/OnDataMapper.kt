@@ -2,10 +2,20 @@ package org.deafsapps.android.favquotes.datalayer.domain
 
 import org.deafsapps.android.favquotes.domainlayer.domain.FailureBo
 import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
+import org.deafsapps.android.favquotes.domainlayer.domain.QuoteListWrapperBo
 
 private const val DEFAULT_STRING_VALUE = ""
 private const val DEFAULT_BOOLEAN_VALUE = false
 private const val DEFAULT_INTEGER_VALUE = -1
+
+/**
+ *
+ */
+fun QuoteListWrapperDto.toListWrapperBo() = QuoteListWrapperBo(
+    page = page ?: DEFAULT_INTEGER_VALUE,
+    isLastPage = isLastPage ?: DEFAULT_BOOLEAN_VALUE,
+    quoteList = quoteList?.toBoList() ?: emptyList()
+)
 
 /**
  *

@@ -128,7 +128,15 @@ interface DomainlayerContract {
              *
              * @return A list of [T] data if it is successful or a [FailureBo] otherwise
              */
-            suspend fun fetchPublicQuotes(): Either<FailureBo, List<T>>
+            suspend fun fetchQuoteList(): Either<FailureBo, List<T>>
+
+            /**
+             * Fetches a list of public quotes from a specific page, and according to [T] data type
+             *
+             * @param [page] to be queried
+             * @return A list of [T] data if it is successful or a [FailureBo] otherwise
+             */
+            suspend fun fetchQuoteListByPage(page: Int): Either<FailureBo, List<T>>
 
             /**
              * Marks a specific quote as favourite (fav)

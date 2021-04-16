@@ -8,6 +8,11 @@ import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SPLASH_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridge
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridgeImpl
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MAIN_DOMAIN_BRIDGE_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridge
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridgeImpl
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_LIST_UC_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteListUc
 import org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_RANDOM_QUOTE_UC_TAG
 import org.deafsapps.android.favquotes.domainlayer.usecase.FetchRandomQuoteUc
 import javax.inject.Named
@@ -24,11 +29,11 @@ object BridgeModule {
         bridge: SplashDomainLayerBridgeImpl
     ): @JvmSuppressWildcards SplashDomainLayerBridge<QuoteBo> = bridge
 
-//    @Provides
-//    @Named(MAIN_DOMAIN_BRIDGE_TAG)
-//    fun provideMainDomainBridge(
-//    bridge: MainDomainLayerBridgeImpl
-//    ): @JvmSuppressWildcards MainDomainLayerBridge<DataRepoBoWrapper> = bridge
+    @Provides
+    @Named(MAIN_DOMAIN_BRIDGE_TAG)
+    fun provideMainDomainBridge(
+        bridge: MainDomainLayerBridgeImpl
+    ): @JvmSuppressWildcards MainDomainLayerBridge<QuoteBo> = bridge
 
 //    @Provides
 //    @Named(DETAIL_DOMAIN_BRIDGE_TAG)
@@ -46,5 +51,11 @@ object UsecaseModule {
     fun provideFetchRandomQuoteUc(
         usecase: FetchRandomQuoteUc
     ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, QuoteBo> = usecase
+
+    @Provides
+    @Named(FETCH_QUOTE_LIST_UC_TAG)
+    fun provideFetchQuoteListQuoteUc(
+        usecase: FetchQuoteListUc
+    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, List<QuoteBo>> = usecase
 
 }

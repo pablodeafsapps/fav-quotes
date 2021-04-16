@@ -403,7 +403,7 @@ potential-bugs:
     excludeAnnotatedProperties: [""]
     ignoreOnClassesPattern: ""
   MissingWhenCase:
-    active: true
+    active: false
   RedundantElseInWhen:
     active: false
   UnconditionalJumpStatementInLoop:
@@ -565,4 +565,4 @@ style:
   WildcardImport:
     active: true
     excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt,*Contract.kt"]
-    excludeImports: ["java.util.*,kotlinx.android.synthetic.*"]
+    excludeImports: ["java.util.*"]

@@ -6,7 +6,7 @@ import okhttp3.ResponseBody
 import org.deafsapps.android.favquotes.domainlayer.domain.ErrorMessage
 
 private const val C_INVALID_REQUEST = 10
-private const val C_PERMISSIOIN_DENIED = 11
+private const val C_PERMISSION_DENIED = 11
 private const val C_USER_SESSION_NOT_FOUND = 20
 private const val C_INVALID_LOGIN = 21
 private const val C_LOGIN_INACTIVE = 22
@@ -24,6 +24,16 @@ private const val C_PRIVATE_QUOTES_CANNOT_UNFAV = 41
 data class QotdDto(
     @Json(name = "qotd_date") val qotdDate: String?,
     @Json(name = "quote") val quote: QuoteDto?
+)
+
+/**
+ *
+ */
+@JsonClass(generateAdapter = true)
+data class QuoteListWrapperDto(
+    @Json(name = "page") val page: Int?,
+    @Json(name = "last_page") val isLastPage: Boolean?,
+    @Json(name = "quotes") val quoteList: List<QuoteDto>?
 )
 
 /**
@@ -72,7 +82,7 @@ sealed class FailureDto(val msg: String?) {
  */
 enum class FavqsApiErrorCode(val code: Int, val msg: String) {
     INVALID_REQUEST(C_INVALID_REQUEST, "Invalid request"),
-    PERMISSIOIN_DENIED(C_PERMISSIOIN_DENIED, "Permission denied"),
+    PERMISSIOIN_DENIED(C_PERMISSION_DENIED, "Permission denied"),
     USER_SESSION_NOT_FOUND(C_USER_SESSION_NOT_FOUND, "User session not found"),
     INVALID_LOGIN(C_INVALID_LOGIN, "Invalid login or password"),
     LOGIN_INACTIVE(C_LOGIN_INACTIVE, "Login is not active. Contact support@favqs.com"),

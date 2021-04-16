@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridge
 import org.deafsapps.android.favquotes.presentationlayer.R
@@ -56,17 +55,26 @@ class SplashActivity :
     }
 
     override fun initModel() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             viewModel.screenState.collect { screenState ->
                 when (screenState) {
-                    is ScreenState.Render<SplashState> -> processRenderState(screenState.renderState)
+                    is ScreenState.Idle -> hideLoading()
+                    is ScreenState.Loading -> showLoading()
+                    is ScreenState.Render<SplashState> -> {
+                        processRenderState(screenState.renderState)
+                        hideLoading()
+                    }
                 }
             }
         }
-        lifecycleScope.launch {
+
+        lifecycleScope.launchWhenStarted {
             viewModel.errorState.collect { failure ->
                 when (failure) {
-                    !is FailureVo.Idle -> processRenderError(failure)
+                    !is FailureVo.Idle -> {
+                        processRenderError(failure)
+                        hideLoading()
+                    }
                 }
             }
         }
@@ -94,6 +102,18 @@ class SplashActivity :
             clRoot.visibility = View.VISIBLE
             tvQuote.text = String.format(getString(R.string.text_splash_quote), data.body)
             tvAuthor.text = String.format(getString(R.string.text_splash_author), data.author)
+        }
+    }
+
+    private fun showLoading() {
+        with(viewBinding) {
+            pbLoading.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideLoading() {
+        with(viewBinding) {
+            pbLoading.visibility = View.GONE
         }
     }
 

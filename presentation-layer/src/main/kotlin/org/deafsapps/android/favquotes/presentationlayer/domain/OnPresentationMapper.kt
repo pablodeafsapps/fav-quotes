@@ -6,9 +6,19 @@ import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
 /**
  *
  */
+fun List<QuoteBo>.toVoList() = map { it.toVo() }
+
+/**
+ *
+ */
 fun QuoteBo.toVo() = QuoteVo(
     author = author,
-    body = body
+    body = body,
+    downvotesCount = downvotesCount,
+    favoritesCount = favoritesCount,
+    id = id,
+    tags = tags,
+    upvotesCount = upvotesCount
 )
 
 /**
