@@ -5,6 +5,15 @@ private const val DEFAULT_STRING_RESOURCE = "none"
 /**
  *
  */
+data class QuoteListWrapperBo(
+    val page: Int,
+    val isLastPage: Boolean,
+    val quoteList: List<QuoteBo>
+)
+
+/**
+ *
+ */
 data class QuoteBo(
     val author: String,
     val authorPermalink: String,

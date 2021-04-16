@@ -7,7 +7,12 @@ import org.deafsapps.android.favquotes.domainlayer.domain.ErrorMessage
  */
 data class QuoteVo(
     val author: String,
-    val body: String
+    val body: String,
+    val downvotesCount: Int,
+    val favoritesCount: Int,
+    val id: Int,
+    val tags: List<String>,
+    val upvotesCount: Int,
 )
 
 /**

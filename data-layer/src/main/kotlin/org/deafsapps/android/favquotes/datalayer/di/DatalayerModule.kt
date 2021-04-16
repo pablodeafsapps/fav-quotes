@@ -84,20 +84,6 @@ class DatasourceModule {
 
 }
 
-private fun getHttpClient(): OkHttpClient {
-    val interceptor = HttpLoggingInterceptor()
-    if (BuildConfig.DEBUG) {
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-    } else {
-        interceptor.level = HttpLoggingInterceptor.Level.NONE
-    }
-    return OkHttpClient.Builder()
-        .addInterceptor(interceptor)
-        .connectTimeout(TEN, TimeUnit.SECONDS)
-        .readTimeout(TEN, TimeUnit.SECONDS)
-        .build()
-}
-
 private fun getUnsafeHttpClient(): OkHttpClient {
     // Create a trust manager that does not validate certificate chains
     val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
@@ -127,6 +113,20 @@ private fun getUnsafeHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
         .sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
         .hostnameVerifier { _, _ -> true }
+        .addInterceptor(interceptor)
+        .connectTimeout(TEN, TimeUnit.SECONDS)
+        .readTimeout(TEN, TimeUnit.SECONDS)
+        .build()
+}
+
+private fun getHttpClient(): OkHttpClient {
+    val interceptor = HttpLoggingInterceptor()
+    if (BuildConfig.DEBUG) {
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+    } else {
+        interceptor.level = HttpLoggingInterceptor.Level.NONE
+    }
+    return OkHttpClient.Builder()
         .addInterceptor(interceptor)
         .connectTimeout(TEN, TimeUnit.SECONDS)
         .readTimeout(TEN, TimeUnit.SECONDS)

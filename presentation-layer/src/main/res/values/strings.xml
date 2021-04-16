@@ -1,5 +1,13 @@
 <resources>
+    <!-- base -->
+    <string name="default_content_description">image</string>
+    <!-- splash -->
     <string name="text_splash_quote">\"%1$s\"</string>
     <string name="text_splash_author">[%1$s]</string>
     <string name="text_splash_hint">tap to continue</string>
+    <!-- main -->
+    <string name="text_main_no_data">No data</string>
+    <string name="tv_placeholder_author">Author\'s name</string>
+    <string name="tv_placeholder_quote">This text represents a quote to be included in the corresponding \'ViewHolder\'</string>
+    <string name="tv_placeholder_na">-</string>
 </resources>

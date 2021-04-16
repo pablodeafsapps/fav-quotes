@@ -29,6 +29,7 @@ class SplashViewModel @Inject constructor(
      *
      */
     fun onViewResumed() {
+        _screenState.value = ScreenState.Loading
         bridge.fetchRandomQuote(
             scope = viewModelScope,
             onResult = {
