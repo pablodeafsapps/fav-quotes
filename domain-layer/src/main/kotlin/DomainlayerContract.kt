@@ -139,6 +139,14 @@ interface DomainlayerContract {
             suspend fun fetchQuoteListByPage(page: Int): Either<FailureBo, List<T>>
 
             /**
+             * Fetches a specific quote according to an ID and a [T] data type
+             *
+             * @param [id] of the quote to query
+             * @return A list of [T] data if it is successful or a [FailureBo] otherwise
+             */
+            suspend fun fetchQuoteById(id: Int): Either<FailureBo, T>
+
+            /**
              * Marks a specific quote as favourite (fav)
              *
              * @param quoteId the quote identifier

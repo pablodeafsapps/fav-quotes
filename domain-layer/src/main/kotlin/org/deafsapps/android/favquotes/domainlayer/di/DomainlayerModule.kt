@@ -8,10 +8,15 @@ import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SPLASH_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridge
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridgeImpl
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.detail.DETAIL_DOMAIN_BRIDGE_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.detail.DetailDomainLayerBridge
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.detail.DetailDomainLayerBridgeImpl
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MAIN_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridge
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridgeImpl
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_BY_ID_UC_TAG
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_LIST_UC_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteByIdUc
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteListUc
 import org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_RANDOM_QUOTE_UC_TAG
 import org.deafsapps.android.favquotes.domainlayer.usecase.FetchRandomQuoteUc
@@ -35,11 +40,11 @@ object BridgeModule {
         bridge: MainDomainLayerBridgeImpl
     ): @JvmSuppressWildcards MainDomainLayerBridge<QuoteBo> = bridge
 
-//    @Provides
-//    @Named(DETAIL_DOMAIN_BRIDGE_TAG)
-//    fun provideDetailDomainBridge(
-//    bridge: DetailDomainLayerBridgeImpl
-//    ): @JvmSuppressWildcards DetailDomainLayerBridge<DataRepoBo> = bridge
+    @Provides
+    @Named(DETAIL_DOMAIN_BRIDGE_TAG)
+    fun provideDetailDomainBridge(
+        bridge: DetailDomainLayerBridgeImpl
+    ): @JvmSuppressWildcards DetailDomainLayerBridge<QuoteBo> = bridge
 
 }
 
@@ -56,6 +61,13 @@ object UsecaseModule {
     @Named(FETCH_QUOTE_LIST_UC_TAG)
     fun provideFetchQuoteListQuoteUc(
         usecase: FetchQuoteListUc
-    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, List<QuoteBo>> = usecase
+    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, List<QuoteBo>> =
+        usecase
+
+    @Provides
+    @Named(FETCH_QUOTE_BY_ID_UC_TAG)
+    fun provideFetchQuoteByIdUc(
+        usecase: FetchQuoteByIdUc
+    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Int, QuoteBo> = usecase
 
 }

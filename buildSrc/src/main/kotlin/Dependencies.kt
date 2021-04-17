@@ -1,8 +1,7 @@
-const val kotlinVersion = "1.4.10"
-
 object Build {
 
     object Versions {
+        const val kotlin = "1.4.20"
         const val gradle = "4.1.0"
         const val detekt = "1.15.0-RC1"
         const val dokka = "0.9.17"
@@ -10,7 +9,7 @@ object Build {
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.gradle}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
     const val dokkaGradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:${Versions.dokka}"
     const val ribbonizerPlugin = "com.github.gfx.ribbonizer:ribbonizer-plugin:${Versions.ribbonizer}"
@@ -23,12 +22,11 @@ object Plugins {
     const val javaLibrary = "java-library"
     const val kotlin = "kotlin"
     const val kotlinAndroid = "kotlin-android"
-    const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val detekt = "io.gitlab.arturbosch.detekt"
     const val dokka = "org.jetbrains.dokka"
     const val ribbonizer = "com.github.gfx.ribbonizer"
     const val kotlinKapt = "kotlin-kapt"
-
+    const val kotlinParcelize = "kotlin-parcelize"
 }
 
 object AndroidSdk {
@@ -40,7 +38,6 @@ object AndroidSdk {
 // librarias
 object Libraries {
     // kotlin
-    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val kotlinCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

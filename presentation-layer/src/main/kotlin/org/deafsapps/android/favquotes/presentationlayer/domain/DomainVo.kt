@@ -1,10 +1,13 @@
 package org.deafsapps.android.favquotes.presentationlayer.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import org.deafsapps.android.favquotes.domainlayer.domain.ErrorMessage
 
 /**
  *
  */
+@Parcelize
 data class QuoteVo(
     val author: String,
     val body: String,
@@ -13,7 +16,8 @@ data class QuoteVo(
     val id: Int,
     val tags: List<String>,
     val upvotesCount: Int,
-)
+    val url: String
+) : Parcelable
 
 /**
  * A class which models any failure coming from the 'domain-layer' module

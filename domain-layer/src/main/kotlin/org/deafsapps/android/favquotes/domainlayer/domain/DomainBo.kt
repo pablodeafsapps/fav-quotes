@@ -48,6 +48,7 @@ object ErrorMessage {
     const val ERROR_NO_CONNECTION = "No Connection"
     const val ERROR_PARAMS_CANNOT_BE_EMPTY = "Params cannot be empty"
     const val ERROR_PARAMS_BOTH_EMAIL_PASSWORD_REQUIRED = "Both e-mail and password are required"
+    const val ERROR_QUOTE_ID_NOT_VALID = "Quote ID not valid"
     const val ERROR_BAD_REQUEST = "Bad Request"
     const val ERROR_LOGIN_REQUEST = "Login: wrong e-mail or password"
     const val ERROR_LOGIN_RESPONSE = "Login Request Error"

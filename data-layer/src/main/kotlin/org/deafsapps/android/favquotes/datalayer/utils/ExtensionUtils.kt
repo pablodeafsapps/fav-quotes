@@ -74,7 +74,9 @@ fun <T, R> Response<T>.retrofitSafeCall(
  */
 fun <T> Response<T>?.handleDataSourceError(): Either<FailureBo, Nothing> =
     when (this?.code()) {
-        in 400..499 -> FailureDto.RequestError(code = 400, msg = ErrorMessage.ERROR_BAD_REQUEST)
+        in 400..403 -> FailureDto.RequestError(code = 400, msg = ErrorMessage.ERROR_BAD_REQUEST)
+        404 -> FailureDto.NoData
+        in 405..499 -> FailureDto.RequestError(code = 400, msg = ErrorMessage.ERROR_BAD_REQUEST)
         in 500..599 -> FailureDto.RequestError(code = 500, msg = ErrorMessage.ERROR_SERVER)
         else -> FailureDto.Unknown
     }.dtoToBoFailure().left()

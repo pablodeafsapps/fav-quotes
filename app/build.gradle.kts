@@ -25,7 +25,7 @@ android {
         applicationId = "org.deafsapps.android.favquotes"
         minSdkVersion(AndroidSdk.min)
         targetSdkVersion(AndroidSdk.target)
-        multiDexEnabled  = true
+        multiDexEnabled = true
     }
     // add version management feature
     generateAppVersioning()
@@ -63,9 +63,9 @@ tasks {
     val dokka by getting(DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-        skipEmptyPackages = true   // skip empty packages
-        skipDeprecated = true   // skip deprecated
-        noStdlibLink = true   // skip documentation related to kotlin-stdlib
+        skipEmptyPackages = true // skip empty packages
+        skipDeprecated = true // skip deprecated
+        noStdlibLink = true // skip documentation related to kotlin-stdlib
     }
 }
 
@@ -110,7 +110,7 @@ fun generateAppVersioning() {
             defaultConfig {
                 println("Build number: $buildNumber")
                 versionCode = buildNumber
-                versionName = "${versionMajor}.${versionMinor}.${buildNumber}"
+                versionName = "$versionMajor.$versionMinor.$buildNumber"
             }
         }
     } else {
