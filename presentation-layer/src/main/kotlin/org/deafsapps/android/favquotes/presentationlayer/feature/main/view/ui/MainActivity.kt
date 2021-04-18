@@ -1,5 +1,6 @@
 package org.deafsapps.android.favquotes.presentationlayer.feature.main.view.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import org.deafsapps.android.favquotes.presentationlayer.di.MainComponent
 import org.deafsapps.android.favquotes.presentationlayer.di.MainComponentFactoryProvider
 import org.deafsapps.android.favquotes.presentationlayer.domain.FailureVo
 import org.deafsapps.android.favquotes.presentationlayer.domain.QuoteVo
+import org.deafsapps.android.favquotes.presentationlayer.feature.detail.view.ui.DetailActivity
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.adapter.QuoteListAdapter
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.state.MainState
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel.MAIN_VIEW_MODEL_TAG
@@ -25,6 +27,8 @@ import org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel.
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
+
+const val QUOTE_ITEM_ID = "quoteItemId"
 
 /**
  *
@@ -46,19 +50,14 @@ class MainActivity :
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         initModel()
         initView()
+        viewModel.onViewCreated()
         setContentView(viewBinding.root)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onViewResumed()
     }
 
     override fun processRenderState(renderState: MainState) {
         when (renderState) {
             is MainState.LoadQuoteList -> loadQuoteList(data = renderState.data)
-            MainState.NavigateToDetailView -> {
-            }
+            is MainState.NavigateToDetailView -> navigateToDetailView(data = renderState.id)
         }
     }
 
@@ -97,14 +96,18 @@ class MainActivity :
         setSupportActionBar(viewBinding.toolbar)
         with(viewBinding.rvItems) {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
-            adapter = QuoteListAdapter(itemList = mutableListOf()) { character ->
-//                viewModel.onCharacterItemSelected(item = character)
+            adapter = QuoteListAdapter(itemList = mutableListOf()) { quote ->
+                viewModel.onQuoteItemSelected(item = quote)
             }
         }
     }
 
     private fun loadQuoteList(data: List<QuoteVo>) {
         (viewBinding.rvItems.adapter as? QuoteListAdapter)?.updateData(newData = data)
+    }
+
+    private fun navigateToDetailView(data: Int) {
+        startActivity(Intent(this, DetailActivity::class.java).putExtra(QUOTE_ITEM_ID, data))
     }
 
     private fun showLoading() {

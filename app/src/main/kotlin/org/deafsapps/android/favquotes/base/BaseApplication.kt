@@ -6,6 +6,8 @@ import org.deafsapps.android.favquotes.BuildConfig
 import org.deafsapps.android.favquotes.di.ApplicationComponent
 import org.deafsapps.android.favquotes.di.DaggerApplicationComponent
 import org.deafsapps.android.favquotes.di.UtilsModule
+import org.deafsapps.android.favquotes.presentationlayer.di.DetailComponent
+import org.deafsapps.android.favquotes.presentationlayer.di.DetailComponentFactoryProvider
 import org.deafsapps.android.favquotes.presentationlayer.di.MainComponent
 import org.deafsapps.android.favquotes.presentationlayer.di.MainComponentFactoryProvider
 import org.deafsapps.android.favquotes.presentationlayer.di.SplashComponent
@@ -21,7 +23,8 @@ import timber.log.Timber.DebugTree
  * @since 1.0
  */
 @ExperimentalCoroutinesApi
-class BaseApplication : Application(), SplashComponentFactoryProvider, MainComponentFactoryProvider {
+class BaseApplication :
+    Application(), SplashComponentFactoryProvider, MainComponentFactoryProvider, DetailComponentFactoryProvider {
 
     private lateinit var appComponent: ApplicationComponent
 
@@ -44,5 +47,8 @@ class BaseApplication : Application(), SplashComponentFactoryProvider, MainCompo
 
     override fun provideMainComponentFactory(): MainComponent.Factory =
         appComponent.mainComponentFactory()
+
+    override fun provideDetailComponentFactory(): DetailComponent.Factory =
+        appComponent.detailComponentFactory()
 
 }

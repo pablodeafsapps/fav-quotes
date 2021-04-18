@@ -90,7 +90,7 @@
             android:gravity="center"
             android:padding="@dimen/eight"
             android:text="@string/tv_placeholder_na"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvFavs"
             tools:text=" 34 " />
@@ -105,7 +105,7 @@
             android:gravity="center"
             android:padding="@dimen/eight"
             android:text="@string/tv_placeholder_na"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@android:color/holo_red_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvUpvotes"
             tools:text=" 12 " />

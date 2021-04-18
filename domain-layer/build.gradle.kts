@@ -12,9 +12,9 @@ tasks {
     val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-        skipEmptyPackages = true   // skip empty packages
-        skipDeprecated = true   // skip deprecated
-        noStdlibLink = true   // skip documentation related to kotlin-stdlib
+        skipEmptyPackages = true // skip empty packages
+        skipDeprecated = true // skip deprecated
+        noStdlibLink = true // skip documentation related to kotlin-stdlib
     }
 }
 

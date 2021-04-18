@@ -6,8 +6,13 @@ import dagger.Subcomponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
 import org.deafsapps.android.favquotes.domainlayer.feature.splash.SplashDomainLayerBridge
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.detail.DetailDomainLayerBridge
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridge
 import org.deafsapps.android.favquotes.presentationlayer.base.BaseMvvmViewModel
+import org.deafsapps.android.favquotes.presentationlayer.feature.detail.view.state.DetailState
+import org.deafsapps.android.favquotes.presentationlayer.feature.detail.view.ui.DetailActivity
+import org.deafsapps.android.favquotes.presentationlayer.feature.detail.viewmodel.DETAIL_VIEW_MODEL_TAG
+import org.deafsapps.android.favquotes.presentationlayer.feature.detail.viewmodel.DetailViewModel
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.state.MainState
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.ui.MainActivity
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel.MAIN_VIEW_MODEL_TAG
@@ -19,7 +24,7 @@ import org.deafsapps.android.favquotes.presentationlayer.feature.splash.viewmode
 import javax.inject.Named
 
 @ExperimentalCoroutinesApi
-@Module(subcomponents = [SplashComponent::class, MainComponent::class])
+@Module(subcomponents = [SplashComponent::class, MainComponent::class, DetailComponent::class])
 object PresentationlayerModule
 
 /**
@@ -131,38 +136,64 @@ class MainModule {
     @Named(MAIN_VIEW_MODEL_TAG)
     fun provideMainViewModel(
         viewModel: MainViewModel
-    ): @JvmSuppressWildcards BaseMvvmViewModel<MainDomainLayerBridge<QuoteBo>, MainState> = viewModel
+    ): @JvmSuppressWildcards BaseMvvmViewModel<MainDomainLayerBridge<QuoteBo>, MainState> =
+        viewModel
 
 }
 
-// @ExperimentalCoroutinesApi
-// interface DetailComponentFactoryProvider {
-//    fun provideDetailComponentFactory(): DetailComponent.Factory
-// }
-//
-// @ExperimentalCoroutinesApi
-// @ActivityScope
-// @Subcomponent(modules = [DetailModule::class])
-// interface DetailComponent {
-//
-//    @Subcomponent.Factory
-//    interface Factory {
-//        fun create(): DetailComponent
-//    }
-//
-//    fun inject(activity: DetailActivity)
-//
-// }
-//
-// @ExperimentalCoroutinesApi
-// @Module
-// class DetailModule {
-//
-//    @ActivityScope
-//    @Provides
-//    @Named(DETAIL_VIEW_MODEL_TAG)
-//    fun provideDetailViewModel(
-//    viewModel: DetailViewModel
-//    ): @JvmSuppressWildcards BaseMvvmViewModel<DetailDomainLayerBridge<DataRepoBo>, DetailState> = viewModel
-//
-// }
+/**
+ *
+ */
+@ExperimentalCoroutinesApi
+interface DetailComponentFactoryProvider {
+    /**
+     *
+     */
+    fun provideDetailComponentFactory(): DetailComponent.Factory
+}
+
+/**
+ *
+ */
+@ExperimentalCoroutinesApi
+@ActivityScope
+@Subcomponent(modules = [DetailModule::class])
+interface DetailComponent {
+
+    /**
+     *
+     */
+    @Subcomponent.Factory
+    interface Factory {
+        /**
+         *
+         */
+        fun create(): DetailComponent
+    }
+
+    /**
+     *
+     */
+    fun inject(activity: DetailActivity)
+
+}
+
+/**
+ *
+ */
+@ExperimentalCoroutinesApi
+@Module
+class DetailModule {
+
+    /**
+     *
+     */
+    @ActivityScope
+    @Provides
+    @Named(DETAIL_VIEW_MODEL_TAG)
+    fun provideDetailViewModel(
+        viewModel: DetailViewModel
+    ): @JvmSuppressWildcards BaseMvvmViewModel<DetailDomainLayerBridge<QuoteBo>, DetailState> =
+        viewModel
+
+}

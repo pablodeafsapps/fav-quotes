@@ -8,5 +8,5 @@ import org.deafsapps.android.favquotes.presentationlayer.domain.QuoteVo
  */
 sealed class MainState : BaseState() {
     class LoadQuoteList(val data: List<QuoteVo>) : MainState()
-    object NavigateToDetailView : MainState()
+    class NavigateToDetailView(val id: Int) : MainState()
 }

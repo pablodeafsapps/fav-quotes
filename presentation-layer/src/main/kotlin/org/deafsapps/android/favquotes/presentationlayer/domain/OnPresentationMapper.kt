@@ -18,7 +18,8 @@ fun QuoteBo.toVo() = QuoteVo(
     favoritesCount = favoritesCount,
     id = id,
     tags = tags,
-    upvotesCount = upvotesCount
+    upvotesCount = upvotesCount,
+    url = url
 )
 
 /**

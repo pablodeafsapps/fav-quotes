@@ -462,7 +462,7 @@ style:
   MagicNumber:
     active: true
     excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"]
-    ignoreNumbers: "-1,0,1,2,400,499,500,599"
+    ignoreNumbers: "-1,0,1,2,400,403,404,405,499,500,599"
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
     ignoreConstantDeclaration: true

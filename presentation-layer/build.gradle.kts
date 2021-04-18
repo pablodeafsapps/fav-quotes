@@ -2,8 +2,8 @@ plugins {
     id(Plugins.androidLibrary)
 
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinKapt)
+    id(Plugins.kotlinParcelize)
     // add lint feature
     id(Plugins.detekt)
     // add automatic documentation generator feature
@@ -48,19 +48,18 @@ android {
 
 }
 
-androidExtensions.isExperimental = true
-
 tasks {
     val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-        skipEmptyPackages = true   // skip empty packages
-        skipDeprecated = true   // skip deprecated
-        noStdlibLink = true   // skip documentation related to kotlin-stdlib
+        skipEmptyPackages = true // skip empty packages
+        skipDeprecated = true // skip deprecated
+        noStdlibLink = true // skip documentation related to kotlin-stdlib
     }
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0-alpha01")
     implementation(Libraries.appCompat)
     implementation(Libraries.lifecycle)
     implementation(Libraries.viewModelKtx)

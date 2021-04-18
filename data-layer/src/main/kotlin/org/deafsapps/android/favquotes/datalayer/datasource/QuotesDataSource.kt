@@ -1,6 +1,7 @@
 package org.deafsapps.android.favquotes.datalayer.datasource
 
 import arrow.core.Either
+import org.deafsapps.android.favquotes.datalayer.domain.toBo
 import org.deafsapps.android.favquotes.datalayer.domain.toListWrapperBo
 import org.deafsapps.android.favquotes.datalayer.domain.toQuoteBo
 import org.deafsapps.android.favquotes.datalayer.service.FavQsApiService
@@ -31,6 +32,11 @@ interface QuotesDataSource {
      */
     suspend fun fetchQuoteList(): Either<FailureBo, QuoteListWrapperBo>
 
+    /**
+     *
+     */
+    suspend fun fetchQuoteById(id: Int): Either<FailureBo, QuoteBo>
+
 }
 
 /**
@@ -49,5 +55,12 @@ class FavQsDataSource @Inject constructor(private val retrofit: Retrofit) : Quot
             .fetchPublicQuotes("Token token=f76bc4b192ea1366f4125e32d6a0c951")
             .retrofitSafeCall(transform = { it.toListWrapperBo() })
             .also { data -> quoteList = data }
+
+    override suspend fun fetchQuoteById(id: Int): Either<FailureBo, QuoteBo> =
+        retrofit.create(FavQsApiService::class.java)
+            .fetchPublicQuoteById(
+                token = "Token token=f76bc4b192ea1366f4125e32d6a0c951",
+                id = id
+            ).retrofitSafeCall(transform = { it.toBo() })
 
 }

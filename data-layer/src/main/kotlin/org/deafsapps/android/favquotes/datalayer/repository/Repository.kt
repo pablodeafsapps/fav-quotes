@@ -35,6 +35,17 @@ object Repository : DomainlayerContract.Datalayer.QuoteDataRepository<QuoteBo> {
             FailureBo.Unknown.left()
         }
 
+    override suspend fun fetchQuoteById(id: Int): Either<FailureBo, QuoteBo> =
+        try {
+            connectivityDataSource.checkNetworkConnectionAvailability().takeIf { it }?.let {
+                quotesDataSource.fetchQuoteById(id = id)
+            } ?: run {
+                FailureBo.NoConnection.left()
+            }
+        } catch (e: Exception) {
+            FailureBo.Unknown.left()
+        }
+
     override suspend fun fetchQuoteListByPage(page: Int): Either<FailureBo, List<QuoteBo>> {
         TODO("Not yet implemented")
     }
