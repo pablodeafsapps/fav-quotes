@@ -23,6 +23,9 @@ private const val DEFAULT_INT_VALUE = 0
 private const val DEFAULT_STRING_VALUE = "none"
 private const val DEFAULT_BOOLEAN_VALUE = false
 
+/**
+ *
+ */
 @ExperimentalCoroutinesApi
 class RepositoryTest {
 
@@ -30,6 +33,9 @@ class RepositoryTest {
     private lateinit var mockQuoteDataSource: QuotesDataSource
     private lateinit var repository: DomainlayerContract.Datalayer.QuoteDataRepository<QuoteBo>
 
+    /**
+     *
+     */
     @Before
     fun setUp() {
         mockConnectivityDataSource = mock()
@@ -42,6 +48,9 @@ class RepositoryTest {
     }
 
     // "Quote Of The Day"
+    /**
+     *
+     */
     @Test
     fun `When there's no connection, a 'NoConnection' error is returned`() = runBlockingTest {
         // given
@@ -52,6 +61,9 @@ class RepositoryTest {
         Assert.assertTrue(response.isLeft() && (response as Either.Left<FailureBo>).a is FailureBo.NoConnection)
     }
 
+    /**
+     *
+     */
     @Test
     fun `When there's connection, but the data-source fails, a 'NoData' error is returned`() =
         runBlockingTest {
@@ -64,6 +76,9 @@ class RepositoryTest {
             Assert.assertTrue(response.isLeft() && (response as Either.Left<FailureBo>).a is FailureBo.NoData)
         }
 
+    /**
+     *
+     */
     @Test
     fun `When there's connection, but the data-source triggers an exception, an 'Unknown' error is returned`() =
         runBlockingTest {
@@ -76,6 +91,9 @@ class RepositoryTest {
             Assert.assertTrue(response.isLeft() && (response as Either.Left<FailureBo>).a is FailureBo.Unknown)
         }
 
+    /**
+     *
+     */
     @Test
     fun `When there's connection, and the data-source succeeds, a list of data is returned`() =
         runBlockingTest {
