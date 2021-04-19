@@ -2,7 +2,11 @@ package org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel
 
 import arrow.core.Either
 import arrow.core.right
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.deafsapps.android.favquotes.domainlayer.domain.FailureBo
 import org.deafsapps.android.favquotes.domainlayer.domain.QuoteBo
@@ -17,17 +21,26 @@ private const val DEFAULT_INT_VALUE = 0
 private const val DEFAULT_STRING_VALUE = "none"
 private const val DEFAULT_BOOLEAN_VALUE = false
 
+/**
+ *
+ */
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
 
     private val viewModel: MainViewModel by lazy { MainViewModel(bridge = mockBridge) }
     private lateinit var mockBridge: MainDomainLayerBridge<QuoteBo>
 
+    /**
+     *
+     */
     @Before
     fun setUp() {
         mockBridge = mock()
     }
 
+    /**
+     *
+     */
     @Test
     fun `check that state is 'LoadQuoteList' when quotes are fetched`() {
         // given
@@ -42,6 +55,9 @@ class MainViewModelTest {
         Assert.assertTrue(getRenderState() is MainState.LoadQuoteList)
     }
 
+    /**
+     *
+     */
     @Test
     fun `check that state is 'LogInfo' when quotes are queried`() {
         // given
