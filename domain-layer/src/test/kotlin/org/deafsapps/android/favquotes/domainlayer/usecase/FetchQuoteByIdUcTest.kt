@@ -20,18 +20,27 @@ private const val DEFAULT_INT_VALUE = 0
 private const val DEFAULT_STRING_VALUE = "none"
 private const val DEFAULT_BOOLEAN_VALUE = false
 
+/**
+ *
+ */
 @ExperimentalCoroutinesApi
 class FetchQuoteByIdUcTest {
 
     private lateinit var fetchQuoteByIdUc: DomainlayerContract.Presentationlayer.UseCase<Int, QuoteBo>
     private lateinit var mockRepository: DomainlayerContract.Datalayer.QuoteDataRepository<QuoteBo>
 
+    /**
+     *
+     */
     @Before
     fun setUp() {
         mockRepository = mock()
         fetchQuoteByIdUc = FetchQuoteByIdUc(dataRepository = mockRepository)
     }
 
+    /**
+     *
+     */
     @Test
     fun `check that if the input parameters are null, an 'InputParamsError' error is returned`() =
         runBlockingTest {
@@ -43,6 +52,9 @@ class FetchQuoteByIdUcTest {
             Assert.assertTrue(response.isLeft() && (response as Either.Left<FailureBo>).a is FailureBo.InputParamsError)
         }
 
+    /**
+     *
+     */
     @Test
     fun `check that if params are right, a 'QuoteBo' is returned`() = runBlockingTest {
         // given
