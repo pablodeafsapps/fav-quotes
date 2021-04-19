@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cardview_height"
+    android:layout_marginStart="@dimen/eight"
+    android:layout_marginTop="@dimen/four"
+    android:layout_marginEnd="@dimen/eight"
+    android:layout_marginBottom="@dimen/four"
+    app:cardCornerRadius="@dimen/eight">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/eight"
+        android:layout_marginBottom="@dimen/eight"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="@dimen/fully_stretchable"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:text="@string/tv_placeholder_author"
+            android:textColor="#FF444444"
+            android:textSize="@dimen/text_eighteen"
+            app:layout_constraintBottom_toBottomOf="@+id/ivQuoteImage"
+            app:layout_constraintEnd_toStartOf="@id/ivQuoteImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivQuoteImage" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivQuoteImage"
+            android:layout_width="@dimen/sixty"
+            android:layout_height="@dimen/sixty"
+            android:layout_margin="@dimen/eight"
+            android:contentDescription="@string/default_content_description"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_quote" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuote"
+            android:layout_width="@dimen/fully_stretchable"
+            android:layout_height="@dimen/fully_stretchable"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:padding="@dimen/eight"
+            android:text="@string/tv_placeholder_quote"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_twenty"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvFavs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivQuoteImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFavs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:drawableStart="@drawable/ic_fav_on"
+            android:gravity="center"
+            android:padding="@dimen/eight"
+            android:text="@string/tv_placeholder_na"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text=" 234 " />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUpvotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:drawableStart="@drawable/ic_upvotes"
+            android:gravity="center"
+            android:padding="@dimen/eight"
+            android:text="@string/tv_placeholder_na"
+            android:textColor="@android:color/holo_green_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvFavs"
+            tools:text=" 34 " />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDownvotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight"
+            android:layout_marginBottom="@dimen/eight"
+            android:drawableStart="@drawable/ic_downvotes"
+            android:gravity="center"
+            android:padding="@dimen/eight"
+            android:text="@string/tv_placeholder_na"
+            android:textColor="@android:color/holo_red_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvUpvotes"
+            tools:text=" 12 " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
