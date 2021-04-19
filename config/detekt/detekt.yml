@@ -28,7 +28,7 @@ console-reports:
 
 comments:
   active: true
-  excludes: ["**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"]
+  excludes: ["**/test/**,**/androidTest/**,**/tests/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"]
   CommentOverPrivateFunction:
     active: false
   CommentOverPrivateProperty:
