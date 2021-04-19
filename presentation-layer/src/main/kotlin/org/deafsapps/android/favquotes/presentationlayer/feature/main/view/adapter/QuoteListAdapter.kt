@@ -15,12 +15,16 @@ import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.viewh
  * @property [onItemSelected] A callback which allows to perform an action over a [QuoteVo]
  */
 class QuoteListAdapter(
-    private var itemList: List<QuoteVo>,
+    private var itemList: MutableSet<QuoteVo>,
     private val onItemSelected: (QuoteVo) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<QuoteVo, QuoteVo>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<QuoteVo, QuoteVo> {
-        val itemBinding = QuoteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = QuoteItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return QuoteItemViewHolder(itemBinding = itemBinding)
     }
 
@@ -28,7 +32,7 @@ class QuoteListAdapter(
 
     override fun onBindViewHolder(holder: BaseViewHolder<QuoteVo, QuoteVo>, position: Int) {
         holder.onBind(
-            item = itemList[position],
+            item = itemList.elementAt(position),
             callback = { item -> onItemSelected.invoke(item) }
         )
     }
@@ -39,7 +43,7 @@ class QuoteListAdapter(
      * @param [newData] A list with the new data to update
      */
     fun updateData(newData: List<QuoteVo>) {
-        itemList = newData
+        itemList.addAll(newData)
         notifyDataSetChanged()
     }
 

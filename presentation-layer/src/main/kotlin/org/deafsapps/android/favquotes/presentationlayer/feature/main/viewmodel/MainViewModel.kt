@@ -31,10 +31,35 @@ class MainViewModel @Inject constructor(
      */
     fun onViewCreated() {
         _screenState.value = ScreenState.Loading
+        bridge.queryQuoteList(
+            scope = viewModelScope,
+            onResult = {
+                it.fold(::handleError, ::handleQueryQuoteListSuccess)
+            }
+        )
+    }
+
+    /**
+     *
+     */
+    fun onViewResumed() {
         bridge.fetchQuoteList(
             scope = viewModelScope,
             onResult = {
-                it.fold(::handleError, ::handleSuccess)
+                it.fold(::handleError, ::handleFetchQuoteListSuccess)
+            }
+        )
+    }
+
+    /**
+     *
+     */
+    fun onEndOfScrollReached() {
+        _screenState.value = ScreenState.Loading
+        bridge.queryQuoteList(
+            scope = viewModelScope,
+            onResult = {
+                it.fold(::handleError, ::handleQueryQuoteListSuccess)
             }
         )
     }
@@ -46,8 +71,17 @@ class MainViewModel @Inject constructor(
         _screenState.value = ScreenState.Render(MainState.NavigateToDetailView(id = item.id))
     }
 
-    private fun handleSuccess(data: List<QuoteBo>) {
+    private fun handleFetchQuoteListSuccess(data: List<QuoteBo>) {
         _screenState.value = ScreenState.Render(MainState.LoadQuoteList(data = data.toVoList()))
+    }
+
+    private fun handleQueryQuoteListSuccess(hasQueried: Boolean) {
+        val msg = if (hasQueried) {
+            "Data queried!"
+        } else {
+            "Query performned, but no data returned"
+        }
+        _screenState.value = ScreenState.Render(MainState.LogInfo(msg = msg))
     }
 
     private fun handleError(failure: FailureBo) {
