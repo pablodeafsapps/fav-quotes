@@ -2,6 +2,7 @@ package org.deafsapps.android.favquotes.datalayer.repository
 
 import arrow.core.Either
 import arrow.core.left
+import kotlinx.coroutines.flow.Flow
 import org.deafsapps.android.favquotes.datalayer.datasource.ConnectivityDataSource
 import org.deafsapps.android.favquotes.datalayer.datasource.QuotesDataSource
 import org.deafsapps.android.favquotes.domainlayer.DomainlayerContract
@@ -24,10 +25,13 @@ object Repository : DomainlayerContract.Datalayer.QuoteDataRepository<QuoteBo> {
             FailureBo.Unknown.left()
         }
 
-    override suspend fun fetchQuoteList(): Either<FailureBo, List<QuoteBo>> =
+    override suspend fun fetchQuoteList(): Flow<Either<FailureBo, List<QuoteBo>>> =
+        quotesDataSource.fetchQuoteList()
+
+    override suspend fun queryQuoteList(): Either<FailureBo, Boolean> =
         try {
             connectivityDataSource.checkNetworkConnectionAvailability().takeIf { it }?.let {
-                quotesDataSource.fetchQuoteList().map { it.quoteList }
+                quotesDataSource.queryQuoteList()
             } ?: run {
                 FailureBo.NoConnection.left()
             }

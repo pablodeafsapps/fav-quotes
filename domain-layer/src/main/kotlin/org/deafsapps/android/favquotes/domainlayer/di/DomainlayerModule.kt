@@ -14,10 +14,12 @@ import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquot
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MAIN_DOMAIN_BRIDGE_TAG
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridge
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.feature.main.MainDomainLayerBridgeImpl
-import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_BY_ID_UC_TAG
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_LIST_UC_TAG
-import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteByIdUc
 import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteListUc
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_QUOTE_BY_ID_UC_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.FetchQuoteByIdUc
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.QUERY_QUOTE_LIST_UC_TAG
+import org.deafsapps.android.favquotes.domainlayer.org.deafsapps.android.favquotes.domainlayer.usecase.QueryQuoteListUc
 import org.deafsapps.android.favquotes.domainlayer.usecase.FETCH_RANDOM_QUOTE_UC_TAG
 import org.deafsapps.android.favquotes.domainlayer.usecase.FetchRandomQuoteUc
 import javax.inject.Named
@@ -59,10 +61,15 @@ object UsecaseModule {
 
     @Provides
     @Named(FETCH_QUOTE_LIST_UC_TAG)
-    fun provideFetchQuoteListQuoteUc(
+    fun provideFetchQuoteListUc(
         usecase: FetchQuoteListUc
-    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, List<QuoteBo>> =
-        usecase
+    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.FlowUseCase<Any, List<QuoteBo>> = usecase
+
+    @Provides
+    @Named(QUERY_QUOTE_LIST_UC_TAG)
+    fun provideQueryQuoteListQuoteUc(
+        usecase: QueryQuoteListUc
+    ): @JvmSuppressWildcards DomainlayerContract.Presentationlayer.UseCase<Any, Boolean> = usecase
 
     @Provides
     @Named(FETCH_QUOTE_BY_ID_UC_TAG)

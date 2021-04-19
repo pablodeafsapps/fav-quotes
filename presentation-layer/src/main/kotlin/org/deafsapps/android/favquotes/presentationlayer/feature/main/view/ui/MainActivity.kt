@@ -24,6 +24,7 @@ import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.adapt
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.view.state.MainState
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel.MAIN_VIEW_MODEL_TAG
 import org.deafsapps.android.favquotes.presentationlayer.feature.main.viewmodel.MainViewModel
+import org.deafsapps.android.favquotes.presentationlayer.utils.rvOnEndOfScrollListener
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
@@ -54,10 +55,16 @@ class MainActivity :
         setContentView(viewBinding.root)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.onViewResumed()
+    }
+
     override fun processRenderState(renderState: MainState) {
         when (renderState) {
             is MainState.LoadQuoteList -> loadQuoteList(data = renderState.data)
             is MainState.NavigateToDetailView -> navigateToDetailView(data = renderState.id)
+            is MainState.LogInfo -> logInfo(data = renderState.msg)
         }
     }
 
@@ -78,9 +85,6 @@ class MainActivity :
                     }
                 }
             }
-        }
-
-        lifecycleScope.launchWhenStarted {
             viewModel.errorState.collect { failure ->
                 when (failure) {
                     !is FailureVo.Idle -> {
@@ -96,9 +100,17 @@ class MainActivity :
         setSupportActionBar(viewBinding.toolbar)
         with(viewBinding.rvItems) {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
-            adapter = QuoteListAdapter(itemList = mutableListOf()) { quote ->
+            adapter = QuoteListAdapter(itemList = mutableSetOf()) { quote ->
                 viewModel.onQuoteItemSelected(item = quote)
             }
+            addOnScrollListener(
+                rvOnEndOfScrollListener(
+                    lManager = layoutManager as LinearLayoutManager,
+                    callback = {
+                        viewModel.onEndOfScrollReached()
+                    }
+                )
+            )
         }
     }
 
@@ -108,6 +120,10 @@ class MainActivity :
 
     private fun navigateToDetailView(data: Int) {
         startActivity(Intent(this, DetailActivity::class.java).putExtra(QUOTE_ITEM_ID, data))
+    }
+
+    private fun logInfo(data: String) {
+        Timber.i(data)
     }
 
     private fun showLoading() {

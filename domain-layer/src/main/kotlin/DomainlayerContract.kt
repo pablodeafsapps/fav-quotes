@@ -128,7 +128,14 @@ interface DomainlayerContract {
              *
              * @return A list of [T] data if it is successful or a [FailureBo] otherwise
              */
-            suspend fun fetchQuoteList(): Either<FailureBo, List<T>>
+            suspend fun queryQuoteList(): Either<FailureBo, Boolean>
+
+            /**
+             * Fetches a list of public quotes according to [T] data type
+             *
+             * @return A list of [T] data if it is successful or a [FailureBo] otherwise
+             */
+            suspend fun fetchQuoteList(): Flow<Either<FailureBo, List<T>>>
 
             /**
              * Fetches a list of public quotes from a specific page, and according to [T] data type
